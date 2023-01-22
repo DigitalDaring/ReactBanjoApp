@@ -10,9 +10,18 @@
                          '. three4  three3  three2  three1  .'
                          '. four4   four3   four2   four1   .';
 
-    div {
+    div.FretLine {
         padding: 2px;
-        background-color: #f00;
+        border-bottom: 1px solid #000;
+        position: relative;
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            height: 24px;
+            width: 1px;
+            background-color: #000;
+        }
     }
 
     .Open4 {
@@ -33,9 +42,9 @@
     
     .TopFret {
         grid-area: topfret;
-
+        border-bottom: 1px solid #000;
         .Thick {
-
+            border-bottom: 3px solid #000;
         }
     }
 
