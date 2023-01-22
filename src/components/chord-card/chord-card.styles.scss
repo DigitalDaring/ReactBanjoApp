@@ -1,0 +1,70 @@
+.ChordCard {
+    width: 250px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 250px 32px;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-areas: 'content root-tab            '
+                         'content first-inversion-tab '
+                         'content second-inversion-tab';
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    position: relative;
+    --color-root: rgb(29, 176, 83);
+    --color-first: rgb(29, 149, 176);
+    --color-second: rgb(102, 29, 176);
+
+    .Content {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, .1);
+        height: 300px;
+        width: 250px;
+        grid-area: content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--chord-card-color, #FFF);
+        color: #FFF;
+        font-size: 48px;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+
+        &.Root {
+            --chord-card-color: var(--color-root);
+        }
+
+        &.First {
+            --chord-card-color: var(--color-first);
+        }
+
+        &.Second {
+            --chord-card-color: var(--color-second);
+        }
+    }
+
+    .Tab {
+        padding-top: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        writing-mode: vertical-lr;
+        color: #FFF;
+
+        &.RootTab {
+            grid-area: root-tab;
+            background-color: var(--color-root);
+        }
+
+        &.FirstInversionTab {
+            grid-area: first-inversion-tab;
+            background-color: var(--color-first);
+        }
+
+        &.SecondInversionTab {
+            grid-area: second-inversion-tab;
+            background-color: var(--color-second);
+        }
+    }
+}

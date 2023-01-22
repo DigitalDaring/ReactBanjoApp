@@ -1,24 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { AllChordsData } from './data/all-chords.data';
+import ChordCard from './components/chord-card/chord-card.component';
+import NoteCard from './components/note-card/note-card.component';
+import { INVERSION } from './models/chord-card.model';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NoteCard note='C#' stringNumber={3} />
+      <ChordCard chord={AllChordsData.CMinor} inversion={INVERSION.FIRST}/>
     </div>
   );
 }
