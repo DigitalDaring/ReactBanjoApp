@@ -1,0 +1,110 @@
+
+.FullDiagram {
+    display: grid;
+    grid-template-columns: 32px 24px 24px 24px 24px 32px;
+    grid-template-rows: 24px 6px 24px 24px 24px 24px;
+    grid-template-areas: '. open4   open3   open2   open1   .'
+                         '. topfret topfret topfret topfret .'
+                         '. one4    one3    one2    one1    fretNum'
+                         '. two4    two3    two2    two1    .'
+                         '. three4  three3  three2  three1  .'
+                         '. four4   four3   four2   four1   .';
+
+    div {
+        padding: 2px;
+        background-color: #f00;
+    }
+
+    .Open4 {
+        grid-area: open4;
+    }
+
+    .Open3 {
+        grid-area: open3;
+    }
+
+    .Open2 {
+        grid-area: open2;
+    }
+
+    .Open1 {
+        grid-area: open1;
+    }
+    
+    .TopFret {
+        grid-area: topfret;
+
+        .Thick {
+
+        }
+    }
+
+    .FretNum {
+        grid-area: fretNum;
+    }
+
+    .One4 {
+        grid-area: one4;
+    }
+
+    .One3 {
+        grid-area: one3;
+    }
+
+    .One2 {
+        grid-area: one2;
+    }
+
+    .One1 {
+        grid-area: one1;
+    }
+
+    .Two4 {
+        grid-area: two4;
+    }
+
+    .Two3 {
+        grid-area: two3;
+    }
+
+    .Two2 {
+        grid-area: two2;
+    }
+
+    .Two1 {
+        grid-area: two1;
+    }
+
+    .Three4 {
+        grid-area: three4;
+    }
+
+    .Three3 {
+        grid-area: three3;
+    }
+
+    .Three2 {
+        grid-area: three2;
+    }
+
+    .Three1 {
+        grid-area: three1;
+    }
+
+    .Four4 {
+        grid-area: four4;
+    }
+
+    .Four3 {
+        grid-area: four3;
+    }
+
+    .Four2 {
+        grid-area: four2;
+    }
+
+    .Four1 {
+        grid-area: four1;
+    }
+
+}
