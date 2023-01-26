@@ -1,61 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import { AllChordsData, AllChordsList } from './data/all-chords.data';
-import ChordCard from './components/chord-card/chord-card.component';
-import NoteCard from './components/note-card/note-card.component';
-import { INVERSION } from './models/chord-card.model';
+
 import FrettedStringDiagram from './components/fretted-string-diagram/fretted-string-diagram.component';
-import SexyButton from './components/sexy-button/sexy-button.component';
-import randomService from './services/random.service';
-import { AllInversionsList } from './data/all-inversions.data';
+import { ChordsPage, NotesPage, WelcomePage } from './pages';
+
+enum Pages {
+  Chords = 'Chords',
+  Notes = 'Notes',
+  Welcome = 'Welcome'
+};
 
 function App() {
 
-  const [chordState, setChordState] = useState(AllChordsData.CMinor);
-  const [inverstionState, setInversionState] = useState(INVERSION.ROOT);
-  const [isNotesExpanded, setIsNotesExpanded] = useState(false);
-  const [keepGettingChords, setKeepGettingChords] = useState(false);
+  const [currentPage, setCurrentPage] = useState(<WelcomePage/>);
 
-  const onExpandNotesClick = (expand: boolean) => {
-    setIsNotesExpanded(expand);
-  };
-
-  const nextChord = () => {
-    const randomChordIndex = randomService.getRandomInteger(0, AllChordsList.length);
-    const newRandomChord = AllChordsList[randomChordIndex];
-
-    const randomInversionIndex = randomService.getRandomInteger(0, AllInversionsList.length);    
-    const newRandomInversion = AllInversionsList[randomInversionIndex];
-
-    setChordState(newRandomChord);
-    setInversionState(newRandomInversion);
-  };
-
-  useEffect(() => {
-    const onTick = setInterval(() => {
-      if(keepGettingChords) {
-        nextChord();
+  const changePage = (newPage: Pages) => {
+    switch(newPage) {
+      case Pages.Chords: {
+        setCurrentPage(<ChordsPage/>);
+        break;
       }
-    }, 10000);
-    return () => clearInterval(onTick);
-  }, [keepGettingChords, nextChord]);
-
-  const toggleInfiniteChords = () => {
-    if(!keepGettingChords) {
-      nextChord();
+      case Pages.Notes: {
+        setCurrentPage(<NotesPage/>);
+        break;
+      }
+      case Pages.Welcome: {
+        setCurrentPage(<WelcomePage/>);
+        break;
+      }
     }
-    setKeepGettingChords(!keepGettingChords);
   };
 
   return (
     <div className="App">
-      <h1>Banjo Stuff!</h1>
-      <FrettedStringDiagram/>
-      <NoteCard note='C#' stringNumber={3} />
-      <ChordCard chord={chordState} inversion={inverstionState} expandNotes={isNotesExpanded} onExpandNotesClick={onExpandNotesClick}/>
-      <SexyButton text="Next Chord!" onClick={nextChord} />
-      <SexyButton text="Keep Getting Chords" onClick={toggleInfiniteChords}/>
+      <header>
+        <a onClick={() => changePage(Pages.Welcome)}>Home</a>
+        <a onClick={() => changePage(Pages.Notes)}>Notes</a>
+        <a onClick={() => changePage(Pages.Chords)}>Chords</a>
+      </header>
+      {currentPage}
     </div>
   );
 }

@@ -1,1 +1,5 @@
-export * from './note-card.component';
+import NoteCard from './note-card.component';
+
+export {
+    NoteCard
+};

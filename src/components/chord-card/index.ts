@@ -1,1 +1,5 @@
-export * from './chord-card.component';
+import ChordCard from './chord-card.component';
+
+export {
+    ChordCard
+};

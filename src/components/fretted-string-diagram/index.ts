@@ -1,1 +1,5 @@
-export * from './fretted-string-diagram.component';
+import FrettedStringDiagram from './fretted-string-diagram.component';
+
+export {
+    FrettedStringDiagram
+};

@@ -1,0 +1,20 @@
+.Page {
+    width: 500px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    padding: 24px;
+
+    .Buttons {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
+
+    p {
+        text-align: left;
+    }
+}
