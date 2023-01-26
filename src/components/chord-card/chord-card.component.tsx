@@ -3,11 +3,14 @@ import { ChordCardModel, INVERSION } from '../../models/chord-card.model';
 
 type ChordCardProperties = {
     chord: ChordCardModel,
-    inversion: INVERSION
+    inversion: INVERSION,
+    expandNotes: boolean,
+    onExpandNotesClick: (expand: boolean) => void;
 };
 
-const ChordCard = ({chord, inversion}: ChordCardProperties) => {
-
+const ChordCard = ({chord, inversion, expandNotes, onExpandNotesClick}: ChordCardProperties) => {
+    const notesClasses = `Notes ${expandNotes ? 'Expanded' : ''}`
+    const triad = chord.triadNotes.map(note => <span>{note}</span>);
     return  <section className="ChordCard">
                 <section className={`Content ${inversion}`}>
                    {chord.shortName}
@@ -20,6 +23,10 @@ const ChordCard = ({chord, inversion}: ChordCardProperties) => {
                 </section>
                 <section className="Tab SecondInversionTab">
                     2nd Inv
+                </section>
+                <section className={notesClasses} onClick={() => onExpandNotesClick(!expandNotes)}>
+                    <h3>Notes</h3>
+                    <div className='Triad'>{triad}</div>
                 </section>
             </section>;
 }

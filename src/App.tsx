@@ -14,6 +14,11 @@ function App() {
 
   const [chordState, setChordState] = useState(AllChordsData.CMinor);
   const [inverstionState, setInversionState] = useState(INVERSION.ROOT);
+  const [isNotesExpanded, setIsNotesExpanded] = useState(false);
+
+  const onExpandNotesClick = (expand: boolean) => {
+    setIsNotesExpanded(expand);
+  };
 
   const nextChord = () => {
     const randomChordIndex = randomService.getRandomInteger(0, AllChordsList.length);
@@ -35,7 +40,7 @@ function App() {
       <h1>Banjo Stuff!</h1>
       <FrettedStringDiagram/>
       <NoteCard note='C#' stringNumber={3} />
-      <ChordCard chord={chordState} inversion={inverstionState}/>
+      <ChordCard chord={chordState} inversion={inverstionState} expandNotes={isNotesExpanded} onExpandNotesClick={onExpandNotesClick}/>
       <SexyButton text="Next Chord!" onClick={nextChord} />
       <SexyButton text="Keep Getting Chords" onClick={keepGettingChords}/>
     </div>
