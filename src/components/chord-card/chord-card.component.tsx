@@ -10,7 +10,7 @@ type ChordCardProperties = {
 
 const ChordCard = ({chord, inversion, expandNotes, onExpandNotesClick}: ChordCardProperties) => {
     const notesClasses = `Notes ${expandNotes ? 'Expanded' : ''}`
-    const triad = chord.triadNotes.map(note => <span>{note}</span>);
+    const triad = chord.triadNotes.map(note => <span key={note}>{note}</span>);
     return  <section className="ChordCard">
                 <section className={`Content ${inversion}`}>
                    {chord.shortName}

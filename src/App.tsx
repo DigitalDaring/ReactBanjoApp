@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import { AllChordsData, AllChordsList } from './data/all-chords.data';
@@ -15,6 +15,7 @@ function App() {
   const [chordState, setChordState] = useState(AllChordsData.CMinor);
   const [inverstionState, setInversionState] = useState(INVERSION.ROOT);
   const [isNotesExpanded, setIsNotesExpanded] = useState(false);
+  const [keepGettingChords, setKeepGettingChords] = useState(false);
 
   const onExpandNotesClick = (expand: boolean) => {
     setIsNotesExpanded(expand);
@@ -31,8 +32,20 @@ function App() {
     setInversionState(newRandomInversion);
   };
 
-  const keepGettingChords = () => {
-    alert('ALL THE CHORDS, BABY!');
+  useEffect(() => {
+    const onTick = setInterval(() => {
+      if(keepGettingChords) {
+        nextChord();
+      }
+    }, 10000);
+    return () => clearInterval(onTick);
+  }, [keepGettingChords, nextChord]);
+
+  const toggleInfiniteChords = () => {
+    if(!keepGettingChords) {
+      nextChord();
+    }
+    setKeepGettingChords(!keepGettingChords);
   };
 
   return (
@@ -42,7 +55,7 @@ function App() {
       <NoteCard note='C#' stringNumber={3} />
       <ChordCard chord={chordState} inversion={inverstionState} expandNotes={isNotesExpanded} onExpandNotesClick={onExpandNotesClick}/>
       <SexyButton text="Next Chord!" onClick={nextChord} />
-      <SexyButton text="Keep Getting Chords" onClick={keepGettingChords}/>
+      <SexyButton text="Keep Getting Chords" onClick={toggleInfiniteChords}/>
     </div>
   );
 }
